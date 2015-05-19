@@ -1,0 +1,6 @@
+*.png
+*.wav
+*.pcm
+target/
+*.txt
+*.data

@@ -1,0 +1,16 @@
+[package]
+name = "inv_fft"
+version = "0.1.0"
+authors = ["John Hodge (sonata) <tpg@mutabah.net>"]
+
+[dependencies]
+env_logger = "*"
+log = "*"
+byteorder = "*"
+rand = "*"
+num = "*"
+
+[dependencies.image]
+version = "*"
+default-features = false
+features = ["png"]
