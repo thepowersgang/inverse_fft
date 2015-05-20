@@ -156,7 +156,7 @@ fn frequencies_to_waveform(sample_rate: f64, total_time: f32, freqs: &[(f64, Vec
 				}
 				else {
 					0
-				} - start;
+				};
 
 			// Generate data
 			// - Head interpolation
@@ -177,13 +177,13 @@ fn frequencies_to_waveform(sample_rate: f64, total_time: f32, freqs: &[(f64, Vec
 				t += t_step;
 			}
 			// - Tail interpolation
-			if end != samples_per_block - start {
+			if end != samples_per_block {
 				let next_amp = (amps[block_idx+1] + block_amp)/2.0;
 				// Work backwards into the block: j=0 :: a=next_amp
 				for j in (0 .. interpolation_count) {
 					let p = j as f64 / (interpolation_count-1) as f64;
-					let a = block_amp * p + next_amp * (1.0 - p);
-					blk_out[samples_per_block - j - 1] += a * f64::sin(t);
+					let a = block_amp * (1.0 - p) + next_amp * p;
+					blk_out[end + j] += a * f64::sin(t);
 					t += t_step;
 				}
 			}
